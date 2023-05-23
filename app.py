@@ -17,7 +17,7 @@ def home():
 @app.route('/excel')
 def excel():
     date = "23-05-2023"
-    workbook = xlsxwriter.Workbook(f'Attendance_{date}.xlsx')
+    workbook = xlsxwriter.Workbook(f'Attendance.xlsx')
     worksheet = workbook.add_worksheet(date)
     #Excel Formatting
     bold = workbook.add_format({'bold': True, 'align': 'center', 'valign': 'vcenter'})
@@ -55,12 +55,10 @@ def excel():
     worksheet.write("F5","50",center)
     worksheet.write("H5",','.join(data),text_wrap)
     worksheet.write("I5","Ravipriya, Sivanunna",text_wrap)
-
-    
-    
-    
     workbook.close()
-    return "excel man"
+    file = f'Attendance.xlsx'
+    return send_file(file,as_attachment= True)
+    
 
 
 
